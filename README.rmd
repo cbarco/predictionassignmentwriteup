@@ -49,6 +49,67 @@ colSums(is.na(clean_training_data))
 ```
 *All missing values (NA) were removed*
 
+                   X            user_name raw_timestamp_part_1 raw_timestamp_part_2 
+                   0                    0                    0                    0 
+      cvtd_timestamp           new_window           num_window            roll_belt 
+                   0                    0                    0                    0 
+          pitch_belt             yaw_belt     total_accel_belt         gyros_belt_x 
+                   0                    0                    0                    0 
+        gyros_belt_y         gyros_belt_z         accel_belt_x         accel_belt_y 
+                   0                    0                    0                    0 
+        accel_belt_z        magnet_belt_x        magnet_belt_y        magnet_belt_z 
+                   0                    0                    0                    0 
+            roll_arm            pitch_arm              yaw_arm      total_accel_arm 
+                   0                    0                    0                    0 
+         gyros_arm_x          gyros_arm_y          gyros_arm_z          accel_arm_x 
+                   0                    0                    0                    0 
+         accel_arm_y          accel_arm_z         magnet_arm_x         magnet_arm_y 
+                   0                    0                    0                    0 
+        magnet_arm_z        roll_dumbbell       pitch_dumbbell         yaw_dumbbell 
+                   0                    0                    0                    0 
+total_accel_dumbbell     gyros_dumbbell_x     gyros_dumbbell_y     gyros_dumbbell_z 
+                   0                    0                    0                    0 
+    accel_dumbbell_x     accel_dumbbell_y     accel_dumbbell_z    magnet_dumbbell_x 
+                   0                    0                    0                    0 
+   magnet_dumbbell_y    magnet_dumbbell_z         roll_forearm        pitch_forearm 
+                   0                    0                    0                    0 
+         yaw_forearm  total_accel_forearm      gyros_forearm_x      gyros_forearm_y 
+                   0                    0                    0                    0 
+     gyros_forearm_z      accel_forearm_x      accel_forearm_y      accel_forearm_z 
+                   0                    0                    0                    0 
+    magnet_forearm_x     magnet_forearm_y     magnet_forearm_z               classe 
+                   0                    0                    0                    0 
+                   X            user_name raw_timestamp_part_1 raw_timestamp_part_2 
+                   0                    0                    0                    0 
+      cvtd_timestamp           new_window           num_window            roll_belt 
+                   0                    0                    0                    0 
+          pitch_belt             yaw_belt     total_accel_belt         gyros_belt_x 
+                   0                    0                    0                    0 
+        gyros_belt_y         gyros_belt_z         accel_belt_x         accel_belt_y 
+                   0                    0                    0                    0 
+        accel_belt_z        magnet_belt_x        magnet_belt_y        magnet_belt_z 
+                   0                    0                    0                    0 
+            roll_arm            pitch_arm              yaw_arm      total_accel_arm 
+                   0                    0                    0                    0 
+         gyros_arm_x          gyros_arm_y          gyros_arm_z          accel_arm_x 
+                   0                    0                    0                    0 
+         accel_arm_y          accel_arm_z         magnet_arm_x         magnet_arm_y 
+                   0                    0                    0                    0 
+        magnet_arm_z        roll_dumbbell       pitch_dumbbell         yaw_dumbbell 
+                   0                    0                    0                    0 
+total_accel_dumbbell     gyros_dumbbell_x     gyros_dumbbell_y     gyros_dumbbell_z 
+                   0                    0                    0                    0 
+    accel_dumbbell_x     accel_dumbbell_y     accel_dumbbell_z    magnet_dumbbell_x 
+                   0                    0                    0                    0 
+   magnet_dumbbell_y    magnet_dumbbell_z         roll_forearm        pitch_forearm 
+                   0                    0                    0                    0 
+         yaw_forearm  total_accel_forearm      gyros_forearm_x      gyros_forearm_y 
+                   0                    0                    0                    0 
+     gyros_forearm_z      accel_forearm_x      accel_forearm_y      accel_forearm_z 
+                   0                    0                    0                    0 
+    magnet_forearm_x     magnet_forearm_y     magnet_forearm_z               classe 
+                   0                    0                    0                    0 
+
 ```{r}
 clean_training_data <- clean_training_data[,-c(1:7)]
 clean_test_data <- test_data[,-c(1:7)]
@@ -75,6 +136,40 @@ decision_tree_prediction <- predict(decision_tree, training_crossval_data)
 confusionMatrix(table(training_crossval_data$classe, decision_tree_prediction)) 
 rpart.plot(decision_tree$finalModel)
 ```
+Confusion Matrix and Statistics
+
+   decision_tree_prediction
+       A    B    C    D    E
+  A 1258   15  118    0    4
+  B  420  319  210    0    0
+  C  399   30  426    0    0
+  D  362  135  307    0    0
+  E  139  110  255    0  397
+
+Overall Statistics
+                                          
+               Accuracy : 0.4894          
+                 95% CI : (0.4753, 0.5035)
+    No Information Rate : 0.5257          
+    P-Value [Acc > NIR] : 1               
+                                          
+                  Kappa : 0.3322          
+                                          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.4880  0.52381  0.32371       NA  0.99002
+Specificity            0.9411  0.85332  0.88043   0.8361  0.88807
+Pos Pred Value         0.9018  0.33614  0.49825       NA  0.44062
+Neg Pred Value         0.6238  0.92668  0.78019       NA  0.99900
+Prevalence             0.5257  0.12418  0.26835   0.0000  0.08177
+Detection Rate         0.2565  0.06505  0.08687   0.0000  0.08095
+Detection Prevalence   0.2845  0.19352  0.17435   0.1639  0.18373
+Balanced Accuracy      0.7145  0.68856  0.60207       NA  0.93905
+
+![alt text](http://127.0.0.1:37889/chunk_output/s/53AB4C2A/c0dqx8gw06moq/000003.png)
 
 ***Random forest***
 ```{r}
@@ -82,11 +177,45 @@ rfMod <- train(classe ~., method='rf', data=training_training_data, ntree=100)
 rfPrediction <- predict(rfMod, training_crossval_data)
 confusionMatrix(table(training_crossval_data$classe, rfPrediction))
 ```
+Confusion Matrix and Statistics
+
+   rfPrediction
+       A    B    C    D    E
+  A 1391    2    2    0    0
+  B    3  943    3    0    0
+  C    0    5  844    6    0
+  D    0    0   13  791    0
+  E    0    1    0    5  895
+
+Overall Statistics
+                                          
+               Accuracy : 0.9918          
+                 95% CI : (0.9889, 0.9942)
+    No Information Rate : 0.2843          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.9897          
+                                          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: A Class: B Class: C Class: D Class: E
+Sensitivity            0.9978   0.9916   0.9791   0.9863   1.0000
+Specificity            0.9989   0.9985   0.9973   0.9968   0.9985
+Pos Pred Value         0.9971   0.9937   0.9871   0.9838   0.9933
+Neg Pred Value         0.9991   0.9980   0.9956   0.9973   1.0000
+Prevalence             0.2843   0.1939   0.1758   0.1635   0.1825
+Detection Rate         0.2836   0.1923   0.1721   0.1613   0.1825
+Detection Prevalence   0.2845   0.1935   0.1743   0.1639   0.1837
+Balanced Accuracy      0.9984   0.9950   0.9882   0.9916   0.9993
 
 ***Prediction***
 ```{r}
 predict(rfMod, clean_test_data)
 ```
+[1] B A B A A E D B A A B C B A E E A B B B
+Levels: A B C D E
 
 ***Conclusion***
 
